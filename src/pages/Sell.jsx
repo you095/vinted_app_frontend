@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ImageUploader from "../components/ImageUploader/ImageUploader";
 import CategorySelector from "../components/CategorySelector/CategorySelector";
+import ConditionSelector from "../components/ConditionSelector/ConditionSelector";
 import { useAuth } from "../contexts/AuthContext";
 import "./Sell.css";
 
@@ -39,28 +40,27 @@ const Sell = () => {
     setSubmitError(null);
 
     try {
-      // Create FormData object
+      // Prepare the product data
+      const productData = {
+        title: data.title,
+        description: data.description,
+        price: parseFloat(data.price),
+        condition: data.condition, // ID of the condition
+        categoryId: data.category?.categoryId,
+        subcategoryId: data.category?.subcategoryId,
+      };
+
+      // Create FormData for images
       const formData = new FormData();
 
-      // Add text fields
-      formData.append("title", data.title);
-      formData.append("description", data.description);
-      formData.append("price", parseFloat(data.price));
-      formData.append("condition", data.condition);
-      formData.append("categoryId", data.category?.categoryId);
-      if (data.category?.subcategoryId) {
-        formData.append("subcategoryId", data.category.subcategoryId);
-      }
+      // Add the product data as JSON
+      formData.append("data", JSON.stringify(productData));
 
       // Add images
       if (data.images && data.images.length > 0) {
-        data.images.forEach((image) => {
-          formData.append("file", image);
+        data.images.forEach((image, index) => {
+          formData.append(`images`, image);
         });
-        formData.append(
-          "images",
-          JSON.stringify(data.images.map((_, i) => ({ order: i })))
-        );
       }
 
       // Submit to API
@@ -159,14 +159,11 @@ const Sell = () => {
                 control={control}
                 rules={{ required: "L'état est requis" }}
                 render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    label="État"
-                    fullWidth
-                    placeholder="ex: Neuf avec étiquette"
+                  <ConditionSelector
+                    value={field.value}
+                    onChange={field.onChange}
                     error={!!error}
                     helperText={error?.message}
-                    margin="normal"
                   />
                 )}
               />

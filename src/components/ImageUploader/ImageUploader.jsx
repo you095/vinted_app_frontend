@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Box, Typography, CircularProgress, Button } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -8,7 +8,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useAuth } from "../../contexts/AuthContext";
 import "./ImageUploader.css";
 
-function ImageUploader({ onChange, productId = "2" }) {
+function ImageUploader({ onChange }) {
   const { api } = useAuth();
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState({});
@@ -77,40 +77,6 @@ function ImageUploader({ onChange, productId = "2" }) {
     maxFiles: 20,
   });
 
-  const testImageUpload = async () => {
-    if (images.length === 0) {
-      setUploadStatus("Please select images first");
-      return;
-    }
-
-    try {
-      setUploadStatus("Uploading...");
-
-      const formData = new FormData();
-      images.forEach((image) => {
-        formData.append("image", image);
-      });
-      formData.append("product", "2");
-
-      console.log("Uploading images...");
-
-      // Make API call
-      const response = await api.post("/upload-product-images/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log("Upload response:", response.data);
-      setUploadStatus("Upload successful!");
-    } catch (error) {
-      console.error("Full error object:", error);
-      setUploadStatus(
-        "Upload failed: " + (error.response?.data?.error || error.message)
-      );
-    }
-  };
-
   return (
     <div className="image-uploader">
       <div className="image-grid">
@@ -175,16 +141,6 @@ function ImageUploader({ onChange, productId = "2" }) {
           Formats acceptés : JPG, JPEG, PNG • Max 20 photos • Première photo =
           photo principale
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={testImageUpload}
-          startIcon={<CloudUploadIcon />}
-          className="test-upload-button"
-          disabled={images.length === 0}
-        >
-          Upload Images (Test Product ID: 2)
-        </Button>
         {uploadStatus && (
           <Typography
             className={`upload-status ${
