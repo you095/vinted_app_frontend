@@ -1,0 +1,73 @@
+.sell-container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.sell-container h1 {
+  color: #111;
+  font-size: 24px;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.sell-section {
+  padding: 24px;
+  margin-bottom: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sell-section h6 {
+  color: #111;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-fields .MuiTextField-root {
+  margin: 8px 0;
+}
+
+.form-fields .MuiInputLabel-root {
+  color: #666;
+}
+
+.form-fields .MuiInputLabel-root.Mui-focused {
+  color: #09b1ba;
+}
+
+.form-fields
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #09b1ba;
+}
+
+.error-message {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+.submit-button {
+  margin-top: 24px !important;
+  background-color: #09b1ba !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  padding: 12px !important;
+}
+
+.submit-button:hover {
+  background-color: #0891989c !important;
+}
+
+.submit-button:disabled {
+  background-color: rgba(9, 177, 186, 0.5) !important;
+}

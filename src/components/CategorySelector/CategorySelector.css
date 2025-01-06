@@ -1,0 +1,44 @@
+.category-selector {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.category-selector .MuiFormControl-root {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.category-selector .MuiInputLabel-root {
+  color: #666;
+}
+
+.category-selector .MuiInputLabel-root.Mui-focused {
+  color: #09b1ba;
+}
+
+.category-selector .MuiOutlinedInput-root {
+  border-radius: 4px;
+}
+
+.category-selector
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #09b1ba;
+}
+
+.category-selector .MuiMenuItem-root {
+  color: #666;
+}
+
+.category-selector .MuiMenuItem-root:hover {
+  background-color: #e8f7f8;
+}
+
+.category-selector .MuiMenuItem-root.Mui-selected {
+  background-color: #e8f7f8;
+  color: #09b1ba;
+}
+
+.category-selector .MuiMenuItem-root.Mui-selected:hover {
+  background-color: #d1f1f3;
+}
