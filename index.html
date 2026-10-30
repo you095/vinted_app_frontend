@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinted Clone</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+grep -E '^(router_flavor|route_validation_strategy|enforce_route_path_pattern|nginx_(main_)?worker_processes) =' /kong_prefix/.kong_env
+
+ps -eo pid,ppid,etime,args | grep '[n]ginx: '
+
+for p in /proc/[0-9]*; do tr '\0' ' ' < $p/cmdline 2>/dev/null; echo; done | grep 'nginx: '
