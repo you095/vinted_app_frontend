@@ -1,5 +1,1 @@
-grep -E '^(router_flavor|route_validation_strategy|enforce_route_path_pattern|nginx_(main_)?worker_processes) =' /kong_prefix/.kong_env
 
-ps -eo pid,ppid,etime,args | grep '[n]ginx: '
-
-for p in /proc/[0-9]*; do tr '\0' ' ' < $p/cmdline 2>/dev/null; echo; done | grep 'nginx: '
